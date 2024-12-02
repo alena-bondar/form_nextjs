@@ -12,20 +12,36 @@ type InputProps = {
   fieldName: string;
   isShownIcon?: boolean;
   placeholder: string;
+  className?: string;
 };
 
-export const Input: FC<InputProps> = ({ register, type, fieldName, isShownIcon, placeholder }) => {
+export const Input: FC<InputProps> = ({
+  register,
+  type,
+  fieldName,
+  isShownIcon,
+  placeholder,
+  className,
+}) => {
   return (
     <div>
-        {isShownIcon && <Image src={""} alt={""} />}
-      <label className="mb-2">
+      <label className="relative mb-2">
         {fieldName}
         <input
           {...register}
           type={type}
           placeholder={placeholder}
-          className="border rounded-md w-full border-blue-gray-200 text-blue-gray-600 px-3 py-2 text-base my-2"
+          className={`border rounded-md w-full border-blue-gray-200 text-blue-gray-600 py-2 text-base my-2 ${className}`}
         />
+        {isShownIcon && (
+          <Image
+            src="/assets/search-icon.svg"
+            alt="search"
+            width="19"
+            height="19"
+            className="absolute top-[38px] mx-3"
+          />
+        )}
       </label>
     </div>
   );

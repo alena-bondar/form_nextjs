@@ -1,17 +1,16 @@
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 
 type ButtonProps = {
-    name: string;
+    child?: ReactNode;
+    name?: string;
     type: 'submit' | 'reset' | 'button';
     className: string;
 }
 
-export const Button:FC<ButtonProps> = ({name, type, className}) => {
+export const Button:FC<ButtonProps> = ({child, name, type, className}) => {
     return (
-        <div>
-            <button type={type} className={`px-4 py-2 rounded-md border text-sm font-semibold ${className}`}>
-                {name}
+            <button type={type} className={`block px-4 py-2.5 rounded-md border text-sm font-semibold h-10 ${className}`}>
+                {child || name}
             </button>
-        </div>
     )
 }
