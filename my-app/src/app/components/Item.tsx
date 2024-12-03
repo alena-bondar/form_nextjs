@@ -3,11 +3,13 @@ import Image from "next/image";
 import { Button } from "@/app/components/Button";
 import Link from "next/link";
 
-type ItemProps = {
+export type ItemProps = {
   title: string;
+  link: string;
+  addItem?: () => void;
 };
 
-export const Item: FC<ItemProps> = () => {
+export const Item: FC<ItemProps> = ({ title, link, addItem }) => {
   return (
     <div className="py-4 px-6 flex justify-between bg-white items-center">
       <div className="flex">
@@ -20,9 +22,9 @@ export const Item: FC<ItemProps> = () => {
           />
         </div>
         <div>
-          <p className="font-semibold text-gray-900 pb-1.5">Some title</p>
+          <p className="font-semibold text-gray-900 pb-1.5">{title}</p>
           <Link className="text-blue-gray-700" href={""}>
-            Some link
+            {link}
           </Link>
         </div>
       </div>
@@ -31,16 +33,19 @@ export const Item: FC<ItemProps> = () => {
           type="button"
           name="Usuń"
           className="border-r-0 rounded-r-none rounded-l-lg border-gray-300 text-blue-gray-800"
+          onClick={() => {}}
         />
         <Button
           type="button"
           name="Edytuj"
           className="rounded-none border-gray-300 text-blue-gray-800"
+          onClick={() => {}}
         />
         <Button
           type="button"
           name="Dodaj pozycję menu"
           className="border-l-0 rounded-l-none rounded-r-lg border-gray-300 text-blue-gray-800"
+          onClick={addItem}
         />
       </div>
     </div>
