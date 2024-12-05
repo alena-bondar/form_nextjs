@@ -7,7 +7,7 @@ type InputProps = {
   isShownIcon?: boolean;
   placeholder: string;
   className?: string;
-  value: string;
+  value: string | undefined;
   onChange: () => void;
 };
 

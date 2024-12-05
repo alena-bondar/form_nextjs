@@ -12,3 +12,7 @@ body {
   font-family: Inter, sans-serif;
   font-size: 14px;
 }
+
+.menu-item-child {
+  border-left: 1px solid #EAECF0;
+}
