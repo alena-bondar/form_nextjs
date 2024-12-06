@@ -1,7 +1,7 @@
-import {FC, useEffect, useState} from "react";
+import { FC, useEffect, useState } from "react";
 import { UseFormSetValue } from "react-hook-form";
-import {arrayMove, SortableContext} from "@dnd-kit/sortable";
-import {closestCenter, DndContext, DragEndEvent} from "@dnd-kit/core";
+import { arrayMove, SortableContext } from "@dnd-kit/sortable";
+import { closestCenter, DndContext, DragEndEvent } from "@dnd-kit/core";
 import { Item } from "@/app/components";
 import { MenuItem } from "@/app/types";
 import { FormData } from "@/app/validation";
@@ -25,7 +25,9 @@ export const Menu: FC<MenuProps> = ({
   setIsOpenedForm,
   openForm,
 }) => {
-  const [visibleOrder, setVisibleOrder] = useState(menuItems.map((item) => item.id));
+  const [visibleOrder, setVisibleOrder] = useState(
+    menuItems.map((item) => item.id),
+  );
 
   useEffect(() => {
     setVisibleOrder(menuItems.map((item) => item.id));
@@ -70,8 +72,8 @@ export const Menu: FC<MenuProps> = ({
     if (over !== null) {
       if (active.id !== over.id) {
         setVisibleOrder((prev) => {
-          const oldIndex = prev.indexOf((active.id).toString());
-          const newIndex = prev.indexOf((over.id).toString());
+          const oldIndex = prev.indexOf(active.id.toString());
+          const newIndex = prev.indexOf(over.id.toString());
           return arrayMove(prev, oldIndex, newIndex);
         });
       }
@@ -79,21 +81,18 @@ export const Menu: FC<MenuProps> = ({
   };
 
   return (
-    <DndContext
-        collisionDetection={closestCenter}
-        onDragEnd={handleDragEnd}
-    >
+    <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
       <SortableContext items={visibleOrder}>
         {visibleOrder.map((id) => {
           const item = menuItems.find((menuItem) => menuItem.id === id);
           return item ? (
-              <Item
-                  key={item.id}
-                  item={item}
-                  onAdd={openForm}
-                  onEdit={handleEditItem}
-                  onRemove={handleRemoveItem}
-              />
+            <Item
+              key={item.id}
+              item={item}
+              onAdd={openForm}
+              onEdit={handleEditItem}
+              onRemove={handleRemoveItem}
+            />
           ) : null;
         })}
       </SortableContext>

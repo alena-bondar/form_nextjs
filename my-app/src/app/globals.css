@@ -4,10 +4,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-
-}
-
 body {
   font-family: Inter, sans-serif;
   font-size: 14px;

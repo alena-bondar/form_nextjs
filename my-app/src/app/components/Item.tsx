@@ -1,12 +1,10 @@
 import { FC } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {CSS} from '@dnd-kit/utilities';
-import {useSortable} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useSortable } from "@dnd-kit/sortable";
 import { Button } from "@/app/components/Button";
 import { MenuItem } from "@/app/types";
-
-
 
 export type ItemProps = {
   item: MenuItem;
@@ -23,7 +21,8 @@ export const Item: FC<ItemProps> = ({
   onRemove,
   className,
 }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: item.id });
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: item.id });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -33,16 +32,12 @@ export const Item: FC<ItemProps> = ({
   return (
     <>
       <div
-          ref={setNodeRef}
-          style={style}
-          className={`py-4 px-6 flex justify-between bg-white items-center border-b rounded-t-lg border-border ${className}`}
+        ref={setNodeRef}
+        style={style}
+        className={`py-4 px-6 flex justify-between bg-white items-center border-b rounded-t-lg border-border ${className}`}
       >
-        <div
-            className="flex w-1/2">
-          <div
-              {...listeners}
-              {...attributes}
-              className="p-3">
+        <div className="flex w-1/2">
+          <div {...listeners} {...attributes} className="p-3">
             <Image
               src="/assets/move-icon.svg"
               alt="move"
@@ -79,18 +74,18 @@ export const Item: FC<ItemProps> = ({
         </div>
       </div>
       {item.children && item.children.length > 0 && (
-          <div className="ml-8">
-            {item.children.map((child) => (
-                <Item
-                    key={child.id}
-                    item={child}
-                    onAdd={onAdd}
-                    onEdit={onEdit}
-                    onRemove={onRemove}
-                    className="menu-item-child rounded-none border-border rounded-bl-lg rounded-tl-none"
-                />
-            ))}
-          </div>
+        <div className="ml-8">
+          {item.children.map((child) => (
+            <Item
+              key={child.id}
+              item={child}
+              onAdd={onAdd}
+              onEdit={onEdit}
+              onRemove={onRemove}
+              className="menu-item-child rounded-none border-border rounded-bl-lg rounded-tl-none"
+            />
+          ))}
+        </div>
       )}
     </>
   );
